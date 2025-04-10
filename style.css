@@ -1,0 +1,57 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+}
+
+.titulo {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+}
+
+.form-container {
+    padding: 100px 200px;
+    display: flex;
+    gap: 40px;
+    max-width: 900px;
+    justify-self: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input,
+select,
+textarea {
+  margin-bottom: 20px;
+  padding: 8px;
+  font-size: 14px;
+  width: 300px;
+
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+    display: flex;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    justify-self: center;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
