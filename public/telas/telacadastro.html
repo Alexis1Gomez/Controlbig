@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Controltock</title>
+    <link rel="stylesheet" href="../style.css">
+    
+  </head>
+  <body>
+    <h2 class="titulo">Cadastro de Produto</h2>
+
+    <form id="formulario" class="form1">
+      <div class="form-container">
+        <div class="column">
+          <label for="tipo">Tipo:</label>
+          <select id="tipo" name="tipo" required>
+            <option value="">-- Seleccionar --</option>
+            <option value="toner">Tóner</option>
+            <option value="drum">Drum</option>
+          </select>
+
+          <label for="modelo">Modelo:</label>
+          <input type="text" id="modelo" name="modelo" required>
+
+          <label for="codigo">Código:</label>
+          <input type="text" id="codigo" name="codigo" required>
+        </div>
+
+        <div class="column">
+          <label for="cantidad">Cantidad:</label>
+          <input type="number" id="cantidad" name="cantidad" required>
+
+          <label for="estado">Estado:</label>
+          <select id="estado" name="estado">
+            <option value="nuevo">Nuevo</option>
+            <option value="usado">Usado</option>
+            <option value="defectuoso">Defectuoso</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit">Guardar</button>
+    </form>
+
+    <script src="/index.js"></script>
+  </body>
+</html>

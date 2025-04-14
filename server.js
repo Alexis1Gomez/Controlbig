@@ -44,10 +44,14 @@ app.get("/api/tonners", (req, res) => {
   });
 });
 
-// rota principal 
+// rota principal
 // Ruta para servir HTML
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "telainicial.html"));
+  res.sendFile(path.join(__dirname, "public","telas", "telainicial.html"));
+});
+
+app.get("/telacadastro", (req, res) => {
+  res.sendFile(path.join(__dirname, "public","telas", "telacadastro.html"));
 });
 
 // Ruta para insertar datos

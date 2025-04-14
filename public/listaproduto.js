@@ -8,9 +8,9 @@
           const row = document.createElement("tr");
           row.innerHTML = `
             <td>${item.tipo}</td>
-            <td>${item.quantidade}</td>
+            <td>${item.cantidad}</td>
             <td>${item.tipo}</td>
-            <td>${item.quantidade}</td>
+            <td>${item.cantidad}</td>
             <td><button>Editar</button></td>
           `;
           tabela.appendChild(row);

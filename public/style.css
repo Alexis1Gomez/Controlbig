@@ -1,57 +1,71 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 40px;
+  background-color: antiquewhite;
+  justify-content: center;
+  justify-items: center;
+ }
+
+ .titulo {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+ } 
+
+ .form1 {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.titulo {
-  display: flex;
-  justify-items: center;
-  justify-content: center;
-}
+/* .form1 {
+  
+  width: 80%;
+  height: 80%;
+  padding: 100px 100px;
+  background-color: aqua;
+} */
 
 .form-container {
-    padding: 100px 200px;
-    display: flex;
-    gap: 40px;
-    max-width: 900px;
-    justify-self: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .column {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
-label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
+/* Estilo de inputs y selects */
 input,
-select,
-textarea {
-  margin-bottom: 20px;
+select {
   padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   font-size: 14px;
-  width: 300px;
-
-}
-
-textarea {
-  resize: vertical;
 }
 
 button {
-    display: flex;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    justify-self: center;
+  margin-top: 20px;
+  text-align: right; /* o "center" si quieres centrar el botón */
 }
 
-button:hover {
-  background-color: #0056b3;
+ button {
+  width: 150px;
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button-container button:hover {
+  background-color: #2980b9;
 }
