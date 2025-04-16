@@ -1,36 +1,33 @@
-body {
-  background-color: antiquewhite;
-  justify-content: center;
-  justify-items: center;
- }
+@import url(_reset.css);
+@import url(_variaveis.css);
 
- .titulo {
+body {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-contraste-escuro);
+  font-family: var(--fonte-familia-corpo);
+  overflow-x: hidden;
+}
+
+.titulo {
   text-align: center;
   color: #333;
-  margin-bottom: 20px;
- } 
+  margin-bottom: 30px;
+}
 
- .form1 {
+.form1 {
   max-width: 700px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #b8d6eb;
   padding: 25px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  justify-items: center;
 }
-
-/* .form1 {
-  
-  width: 80%;
-  height: 80%;
-  padding: 100px 100px;
-  background-color: aqua;
-} */
 
 .form-container {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 40px;
 }
 
 .column {
@@ -43,6 +40,7 @@ body {
 /* Estilo de inputs y selects */
 input,
 select {
+  width: 300px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -51,10 +49,10 @@ select {
 
 button {
   margin-top: 20px;
-  text-align: right; /* o "center" si quieres centrar el botón */
+  text-align: center; /* o "center" si quieres centrar el botón */
 }
 
- button {
+button {
   width: 150px;
   padding: 10px;
   background-color: #3498db;
@@ -66,6 +64,6 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button-container button:hover {
+button:hover {
   background-color: #2980b9;
 }

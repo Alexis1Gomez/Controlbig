@@ -50,19 +50,25 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public","telas", "telainicial.html"));
 });
 
+// rota de cadastro de produtos
 app.get("/telacadastro", (req, res) => {
   res.sendFile(path.join(__dirname, "public","telas", "telacadastro.html"));
 });
 
+// rota de tela de cadastro con suceso
+app.get("/suceso", (req, res) => {
+  res.sendFile(path.join(__dirname, "public","telas", "cadastroexitiso.html"));
+});
+
 // Ruta para insertar datos
 app.post("/api/guardar", (req, res) => {
-  const { tipo, cantidad, modelo, estado, codigo } = req.body;
+  const { tipo, quantidade, modelo, estado, codigo } = req.body;
 
   console.log("📦 Datos recibidos del formulario:", req.body);
 
   const query =
-    "INSERT INTO tonners (tipo, cantidad, modelo, estado, codigo) VALUES (?, ?, ?, ?, ?)";
-  db.query(query, [tipo, cantidad, modelo, estado, codigo], (err, result) => {
+    "INSERT INTO tonners (tipo, quantidade, modelo, estado, codigo) VALUES (?, ?, ?, ?, ?)";
+  db.query(query, [tipo, quantidade, modelo, estado, codigo], (err, result) => {
     if (err) {
       console.error(
         "❌ Error al guardar en la BD:",
@@ -71,9 +77,10 @@ app.post("/api/guardar", (req, res) => {
       return res.status(500).send("❌ Error al guardar en la base de datos");
     }
 
-    console.log("✅ Registro insertado correctamente");
-    res.status(200).send("✅ Datos guardados con éxito");
+    // console.log("✅ Registro insertado correctamente");
+    res.redirect("/suceso"); // Redirección aquí
   });
+  
 });
 
 app.listen(port, () => {

@@ -2,46 +2,57 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Controltock</title>
-    <link rel="stylesheet" href="../style.css">
-    
-  </head>
+    <!-- <link rel="stylesheet" href="../css/style.css"> -->
+    <link rel="stylesheet" href="../css/base/base2.css"> 
+    <link rel="stylesheet" href="../css/componentes/cabecalho2.css">
   <body>
-    <h2 class="titulo">Cadastro de Produto</h2>
 
-    <form id="formulario" class="form1">
-      <div class="form-container">
-        <div class="column">
-          <label for="tipo">Tipo:</label>
-          <select id="tipo" name="tipo" required>
-            <option value="">-- Seleccionar --</option>
-            <option value="toner">Tóner</option>
-            <option value="drum">Drum</option>
-          </select>
+    <header class="cabecalho container">
+      <!-- <img src="../assets/img/doguitoadm.svg" alt="Logotipo Doguito" class="cabecalho__logo"> -->
+      <nav class="menu">
+        <ul class="cabecalho__lista-navegacao">
+          <li class="cabecalho__link"><a href="#">Inicio</a></li>
+          <li class="cabecalho__link"><a href="#">Produtos</a></li>
+        </ul>
+      </nav>
+    </header>
 
-          <label for="modelo">Modelo:</label>
-          <input type="text" id="modelo" name="modelo" required>
+    <main class="clientes-container">
+      <form id="formulario" class="form1">
+        <h2 class="titulo">Cadastro de Produto</h2>
+        <div class="form-container">
+          <div class="column">
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" name="tipo" required>
+              <option value="">-- Seleccionar --</option>
+              <option value="toner">Tóner</option>
+              <option value="drum">Drum</option>
+            </select>
 
-          <label for="codigo">Código:</label>
-          <input type="text" id="codigo" name="codigo" required>
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo" required />
+
+            <label for="codigo">Código:</label>
+            <input type="text" id="codigo" name="codigo" required />
+          </div>
+
+          <div class="column">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" name="cantidad" required />
+
+            <label for="estado">Estado:</label>
+            <select id="estado" name="estado">
+              <option value="nuevo">Nuevo</option>
+              <option value="usado">Usado</option>
+              <option value="defectuoso">Defectuoso</option>
+            </select>
+          </div>
         </div>
-
-        <div class="column">
-          <label for="cantidad">Cantidad:</label>
-          <input type="number" id="cantidad" name="cantidad" required>
-
-          <label for="estado">Estado:</label>
-          <select id="estado" name="estado">
-            <option value="nuevo">Nuevo</option>
-            <option value="usado">Usado</option>
-            <option value="defectuoso">Defectuoso</option>
-          </select>
-        </div>
-      </div>
-      <button type="submit">Guardar</button>
-    </form>
-
-    <script src="/index.js"></script>
+        <button type="submit">Guardar</button>
+      </form>
+    </main> 
   </body>
+  <script src="/index.js"></script>
 </html>

@@ -27,8 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const result = await res.text();
-      alert(result || "Datos guardados con éxito");
+      // alert(result || "Datos guardados con éxito");
       form.reset();
+      window.location.href = "/telas/cadastroexitiso.html";
     } catch (error) {
       console.error("Error:", error);
       alert("Hubo un problema al guardar los datos.");
