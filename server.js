@@ -57,18 +57,18 @@ app.get("/telacadastro", (req, res) => {
 
 // rota de tela de cadastro con suceso
 app.get("/suceso", (req, res) => {
-  res.sendFile(path.join(__dirname, "public","telas", "cadastroexitiso.html"));
+  res.sendFile(path.join(__dirname, "public","telas", "cadastroexitoso.html"));
 });
 
 // Ruta para insertar datos
 app.post("/api/guardar", (req, res) => {
-  const { tipo, quantidade, modelo, estado, codigo } = req.body;
+  const { tipo, cantidad, modelo, estado, codigo } = req.body;
 
   console.log("📦 Datos recibidos del formulario:", req.body);
 
   const query =
-    "INSERT INTO tonners (tipo, quantidade, modelo, estado, codigo) VALUES (?, ?, ?, ?, ?)";
-  db.query(query, [tipo, quantidade, modelo, estado, codigo], (err, result) => {
+    "INSERT INTO tonners (tipo, cantidad, modelo, estado, codigo) VALUES (?, ?, ?, ?, ?)";
+  db.query(query, [tipo, cantidad, modelo, estado, codigo], (err, result) => {
     if (err) {
       console.error(
         "❌ Error al guardar en la BD:",

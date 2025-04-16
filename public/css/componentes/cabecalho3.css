@@ -1,17 +1,21 @@
 
 .cabecalho {
     background-color: var(--cor-contraste-claro);
-    border-radius: 0 0 10px 10px;
+    border-radius: 10px 10px 10px 10px;
     box-shadow: var(--sombra);
+    width: 46%;
+    margin-right: 10rem;
+    margin-left: 10rem;
+}
+
+.menu  {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
     height: 4.75rem;
-    width: 46%;
+    margin-top: 2rem;
     margin-bottom: 2rem;
-    margin-top: 30px;
-    margin-left: 10rem;
 }
 
 /* .cabecalho__logo {
