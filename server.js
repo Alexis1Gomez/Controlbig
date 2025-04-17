@@ -60,15 +60,30 @@ app.get("/suceso", (req, res) => {
   res.sendFile(path.join(__dirname, "public","telas", "cadastroexitoso.html"));
 });
 
+
+app.delete('/api/tonners/:id', (req, res) => {
+  const id = req.params.id;
+
+  const sql = 'DELETE FROM tonners WHERE id = ?';
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error('Erro ao excluir:', err);
+      return res.status(500).json({ error: 'Erro ao excluir' });
+    }
+    res.status(200).json({ message: 'Item excluido com sucesso' });
+  });
+});
+
+
 // Ruta para insertar datos
 app.post("/api/guardar", (req, res) => {
-  const { tipo, cantidad, modelo, estado, codigo } = req.body;
+  const { tipo, quantidade, modelo, estado, codigo } = req.body;
 
   console.log("📦 Datos recibidos del formulario:", req.body);
 
   const query =
-    "INSERT INTO tonners (tipo, cantidad, modelo, estado, codigo) VALUES (?, ?, ?, ?, ?)";
-  db.query(query, [tipo, cantidad, modelo, estado, codigo], (err, result) => {
+    "INSERT INTO tonners (tipo, quantidade, modelo, estado, codigo) VALUES (?, ?, ?, ?, ?)";
+  db.query(query, [tipo, quantidade, modelo, estado, codigo], (err, result) => {
     if (err) {
       console.error(
         "❌ Error al guardar en la BD:",
