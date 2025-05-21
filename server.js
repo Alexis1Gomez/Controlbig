@@ -1,11 +1,15 @@
 const express = require("express");
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
+const jwt = require('jsonwebtoken'); // Añade esta línea al inicio con los demás requires
 const cors = require("cors");
 const path = require("path"); // << importante para rutas absolutas
+const bcrypt = require('bcrypt');  // biblioteca para encriptars as senhas 
+
 
 const app = express();
 const port = 3001;
+process.env.JWT_SECRET = 'tuSuperSecreto123'; // Cambia esto por un secreto fuerte
 
 // Middleware
 app.use(cors());
@@ -30,6 +34,111 @@ db.connect((err) => {
   }
 });
 
+// ruta para registro del usuario 
+
+app.post('/api/registrar', (req, res) => {
+  const { username, password } = req.body;
+
+  const query = 'INSERT INTO usuarios (usuario, senha) VALUES (?, ?)';
+  db.query(query, [username, password], (err, result) => {
+    if (err) {
+      console.error('Error al registrar:', err);
+      return res.status(500).json({ mensaje: 'Error en el servidor' });
+    }
+    res.json({ mensaje: 'Usuario registrado con éxito' });
+  });
+});
+
+
+// esta es la ruta de login para acesso a la pagina 
+app.post("/login", async (req, res) => {
+  const { usuario, senha } = req.body;
+  console.log("Datos recibidos:", { usuario, senha });
+
+  // Validación básica
+  if (!usuario || !senha) {
+    return res.status(400).json({
+      success: false,
+      message: "Usuario y contraseña requeridos"
+    });
+  }
+
+  const sql = 'SELECT * FROM usuarios WHERE usuario = ?';
+  db.query(sql, [usuario], async (err, results) => {
+    if (err) {
+      console.error("Error en la consulta SQL:", err);
+      return res.status(500).json({
+        success: false,
+        message: 'Error de servidor'
+      });
+    }
+
+    if (results.length === 0) {
+      return res.status(401).json({
+        success: false,
+        message: 'Usuario no encontrado'
+      });
+    }
+
+    const user = results[0];
+    console.log("Datos del usuario:", {
+      id: user.id,
+      usuario: user.usuario,
+      senha: user.senha
+    });
+
+    // Comparación directa (sin hash temporal)
+    if (senha !== user.senha) {
+      return res.status(401).json({
+        success: false,
+        message: "Credenciales inválidas"
+      });
+    }
+
+    // Generación del token
+    try {
+      // Asegúrate de que SECRET esté definido
+      if (!process.env.JWT_SECRET) {
+        throw new Error("Falta la clave secreta JWT");
+      }
+
+      // Verifica que tengamos los datos necesarios
+      if (!user.id || !user.usuario) {
+        throw new Error("Datos de usuario incompletos");
+      }
+
+      const token = jwt.sign(
+        {
+          id: user.id,
+          usuario: user.usuario
+        },
+        process.env.JWT_SECRET || 'fallbackSecret', // Usa una variable de entorno
+        { expiresIn: '1h' }
+      );
+
+      console.log("Token generado correctamente");
+
+      return res.json({
+        success: true,
+        acceso: true, // 👈 ESTA PROPIEDAD ES LA QUE TU FRONTEND BUSCA
+        token,
+        user: {
+          id: user.id,
+          username: user.usuario
+        }
+      });
+
+    } catch (error) {
+      console.error("Error detallado al generar token:", error);
+      return res.status(500).json({
+        success: false,
+        message: 'Error al generar token',
+        error: error.message // Enviamos el mensaje de error detallado
+      });
+    }
+  });
+});
+
 // Ruta principal: enviar el HTML de inicio
 // Ruta que devuelve los tonners
 app.get("/api/tonners", (req, res) => {
@@ -47,18 +156,29 @@ app.get("/api/tonners", (req, res) => {
 // rota principal
 // Ruta para servir HTML
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public","telas", "telainicial.html"));
+  res.sendFile(path.join(__dirname, "public", "telas", "telainicial.html"));
 });
 
 // rota de cadastro de produtos
 app.get("/telacadastro", (req, res) => {
-  res.sendFile(path.join(__dirname, "public","telas", "telacadastro.html"));
+  res.sendFile(path.join(__dirname, "public", "telas", "telacadastro.html"));
 });
 
 // rota de tela de cadastro con suceso
 app.get("/suceso", (req, res) => {
-  res.sendFile(path.join(__dirname, "public","telas", "cadastroexitoso.html"));
+  res.sendFile(path.join(__dirname, "public", "telas", "cadastroexitoso.html"));
 });
+
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "telas", "telaLogin.html"));
+});
+
+app.get("/registro", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "telas", "registro.html"));
+});
+
+
+
 
 
 app.delete('/api/tonners/:id', (req, res) => {
@@ -95,7 +215,7 @@ app.post("/api/guardar", (req, res) => {
     // console.log("✅ Registro insertado correctamente");
     res.redirect("/suceso"); // Redirección aquí
   });
-  
+
 });
 
 app.listen(port, () => {

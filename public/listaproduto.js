@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const row = document.createElement("tr");
         row.innerHTML = `
           <td class="td" data-tf>${item.tipo}</td>
-          <td>${item.cantidad}</td>
+          <td>${item.quantidade}</td>
           <td>${item.tipo}</td>
-          <td>${item.cantidad}</td>
+          <td>${item.quantidade}</td>
           <td>
             <ul class="tabela__botoes-controle">
               <li>

@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       tipo: document.getElementById("tipo").value,
       modelo: document.getElementById("modelo").value,
       codigo: document.getElementById("codigo").value,
-      cantidad: document.getElementById("cantidad").value,
+      quantidade: document.getElementById("quantidade").value,
       estado: document.getElementById("estado").value,
     };
 
